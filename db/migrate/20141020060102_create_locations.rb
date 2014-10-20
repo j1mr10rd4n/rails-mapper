@@ -6,7 +6,6 @@ class CreateLocations < ActiveRecord::Migration
       t.string :latitude
       t.string :longitude
 
-      t.integer :connected_location_id
 
       t.timestamps
     end

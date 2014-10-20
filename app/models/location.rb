@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
 
-  has_one :connected_location, class_name: "Location", foreign_key: :connected_location_id
-  belongs_to :connecting_location, class_name: "Location", foreign_key: :connected_location_id
+  has_one :connection, foreign_key: :location_one_id
+  accepts_nested_attributes_for :connection, reject_if: lambda {|attributes| attributes['location_two_id'].blank?}
 
 end
