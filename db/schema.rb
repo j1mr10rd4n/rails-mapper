@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20141020060102) do
     t.string   "address"
     t.string   "latitude"
     t.string   "longitude"
+    t.integer  "connected_location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

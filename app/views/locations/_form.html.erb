@@ -27,6 +27,9 @@
     <%= f.label :longitude %><br>
     <%= f.text_field :longitude %>
   </div>
+
+  <%= f.select :connected_location_id, options_from_collection_for_select(Location.where("connected_location_id IS NULL"), :id, :name), include_blank: true %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
