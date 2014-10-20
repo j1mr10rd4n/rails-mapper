@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020060730) do
+ActiveRecord::Schema.define(version: 20141020111509) do
 
   create_table "connections", force: true do |t|
-    t.integer  "location_one_id"
-    t.integer  "location_two_id"
+    t.string   "dummy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "endpoints", force: true do |t|
+    t.integer  "location_id"
+    t.integer  "connection_id"
+    t.string   "dummy"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

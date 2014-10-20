@@ -15,7 +15,10 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
-    @location.build_connection
+    @location.endpoints.build
+    @location.endpoints[0].build_connection
+    @location.endpoints[0].connection.endpoints.build
+    @location.endpoints[0].connection.endpoints[0].build_location
   end
 
   # GET /locations/1/edit
@@ -70,6 +73,11 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :address, :latitude, :longitude, connection_attributes: [:location_two_id])
+      params.require(:location).permit(:name,
+                                       :address,
+                                       :latitude,
+                                       :longitude, endpoints_attributes: [:dummy,
+                                                                          connection_attributes: [:dummy,
+                                                                                                  endpoints_attributes: [ :dummy, :location_id ] ] ])
     end
 end

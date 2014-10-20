@@ -1,6 +1,8 @@
 class Location < ActiveRecord::Base
 
-  has_one :connection, foreign_key: :location_one_id
-  accepts_nested_attributes_for :connection, reject_if: lambda {|attributes| attributes['location_two_id'].blank?}
+  has_many :endpoints
+  has_many :connections, through: :endpoits
+  #TODO - find out why attrs keys are strings rather than symbols after :endpoints_attributes - have to build location in new action?
+  accepts_nested_attributes_for :endpoints, reject_if: lambda { |attrs| attrs[:connection_attributes][:endpoints_attributes]["0"]["location_id"].blank? }
 
 end
